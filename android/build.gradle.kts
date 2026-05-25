@@ -1,13 +1,21 @@
+import java.util.zip.ZipFile
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
 
+val gdxVersion = "1.12.1"
+val gdxNatives by configurations.creating
+
 android {
     namespace = "com.sao.aincrad.android"
     compileSdk = 34
 
-    sourceSets["main"].assets.srcDirs("../core/assets")
+    sourceSets["main"].apply {
+        assets.srcDirs("../core/assets")
+        jniLibs.srcDirs("src/main/jniLibs")
+    }
 
     defaultConfig {
         applicationId = "com.sao.aincrad.android"
@@ -48,9 +56,43 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation("com.badlogicgames.gdx:gdx-backend-android:1.12.1")
-    implementation("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-armeabi-v7a")
-    implementation("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-arm64-v8a")
-    implementation("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-x86")
-    implementation("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-x86_64")
+    implementation("com.badlogicgames.gdx:gdx-backend-android:$gdxVersion")
+
+    gdxNatives("com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a")
+    gdxNatives("com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a")
+    gdxNatives("com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86")
+    gdxNatives("com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64")
+}
+
+val extractGdxNatives by tasks.registering {
+    doLast {
+        val outRoot = file("src/main/jniLibs")
+        outRoot.deleteRecursively()
+        outRoot.mkdirs()
+
+        gdxNatives.resolve().forEach { jarFile ->
+            ZipFile(jarFile).use { zip ->
+                zip.entries().asSequence()
+                    .filter { !it.isDirectory && it.name.startsWith("lib/") && it.name.endsWith(".so") }
+                    .forEach { entry ->
+                        val parts = entry.name.split("/")
+                        if (parts.size >= 3) {
+                            val abi = parts[1]
+                            val soName = parts.last()
+                            val abiDir = File(outRoot, abi)
+                            abiDir.mkdirs()
+                            zip.getInputStream(entry).use { input ->
+                                File(abiDir, soName).outputStream().use { output ->
+                                    input.copyTo(output)
+                                }
+                            }
+                        }
+                    }
+            }
+        }
+    }
+}
+
+tasks.matching { it.name == "preBuild" }.configureEach {
+    dependsOn(extractGdxNatives)
 }
