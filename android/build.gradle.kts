@@ -15,6 +15,10 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "0.1.0"
+
+        ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        }
     }
 
     buildTypes {
@@ -49,8 +53,9 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation("com.badlogicgames.gdx:gdx-backend-android:1.12.1")
-    implementation("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-armeabi-v7a")
-    implementation("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-arm64-v8a")
-    implementation("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-x86")
-    implementation("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-x86_64")
+
+    runtimeOnly("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-armeabi-v7a")
+    runtimeOnly("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-arm64-v8a")
+    runtimeOnly("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-x86")
+    runtimeOnly("com.badlogicgames.gdx:gdx-platform:1.12.1:natives-x86_64")
 }
