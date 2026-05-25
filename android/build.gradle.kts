@@ -12,10 +12,8 @@ android {
     namespace = "com.sao.aincrad.android"
     compileSdk = 34
 
-    sourceSets["main"].apply {
-        assets.srcDirs("../core/assets")
-        jniLibs.srcDirs("src/main/jniLibs")
-    }
+    sourceSets["main"].assets.srcDirs("../core/assets")
+    sourceSets["main"].jniLibs.srcDir("src/main/jniLibs")
 
     defaultConfig {
         applicationId = "com.sao.aincrad.android"
@@ -48,6 +46,9 @@ android {
     }
 
     packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
