@@ -1,6 +1,7 @@
 package com.sao.aincrad.android
 
 import android.os.Bundle
+import android.util.Log
 import java.io.PrintWriter
 import java.io.StringWriter
 import com.badlogic.gdx.backends.android.AndroidApplication
@@ -36,6 +37,7 @@ class AndroidLauncher : AndroidApplication() {
     }
 
     private fun showCrashScreen(t: Throwable) {
+        Log.e("SAO_CRASH", "Unhandled runtime crash", t)
         val sw = StringWriter()
         t.printStackTrace(PrintWriter(sw))
         val report = buildString {

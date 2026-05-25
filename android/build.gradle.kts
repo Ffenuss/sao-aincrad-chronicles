@@ -72,20 +72,26 @@ val extractGdxNatives by tasks.registering {
         outRoot.mkdirs()
 
         gdxNatives.resolve().forEach { jarFile ->
+            val fileName = jarFile.name
+            val abi = when {
+                fileName.contains("natives-armeabi-v7a") -> "armeabi-v7a"
+                fileName.contains("natives-arm64-v8a") -> "arm64-v8a"
+                fileName.contains("natives-x86_64") -> "x86_64"
+                fileName.contains("natives-x86") -> "x86"
+                else -> null
+            } ?: return@forEach
+
+            val abiDir = File(outRoot, abi)
+            abiDir.mkdirs()
+
             ZipFile(jarFile).use { zip ->
                 zip.entries().asSequence()
-                    .filter { !it.isDirectory && it.name.startsWith("lib/") && it.name.endsWith(".so") }
+                    .filter { !it.isDirectory && it.name.endsWith(".so") }
                     .forEach { entry ->
-                        val parts = entry.name.split("/")
-                        if (parts.size >= 3) {
-                            val abi = parts[1]
-                            val soName = parts.last()
-                            val abiDir = File(outRoot, abi)
-                            abiDir.mkdirs()
-                            zip.getInputStream(entry).use { input ->
-                                File(abiDir, soName).outputStream().use { output ->
-                                    input.copyTo(output)
-                                }
+                        val soName = entry.name.substringAfterLast('/')
+                        zip.getInputStream(entry).use { input ->
+                            File(abiDir, soName).outputStream().use { output ->
+                                input.copyTo(output)
                             }
                         }
                     }
