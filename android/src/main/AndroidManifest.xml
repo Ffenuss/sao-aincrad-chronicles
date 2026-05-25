@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+    <activity
+    android:name=".CrashActivity"
+    android:exported="false"
+    android:theme="@style/Theme.SAO" />
 
     <application
         android:allowBackup="true"
