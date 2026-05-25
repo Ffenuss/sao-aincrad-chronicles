@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="120" height="120" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="40">
+  <properties><property name="floorName" value="Labyrinth"/></properties>
+  <objectgroup id="1" name="collision">
+    <object id="1" x="0" y="0" width="3840" height="32"/><object id="2" x="0" y="3808" width="3840" height="32"/><object id="3" x="0" y="0" width="32" height="3840"/><object id="4" x="3808" y="0" width="32" height="3840"/>
+    <object id="5" x="480" y="384" width="32" height="704"/><object id="6" x="768" y="704" width="672" height="32"/><object id="7" x="1280" y="704" width="32" height="640"/><object id="8" x="1696" y="320" width="32" height="960"/>
+    <object id="9" x="2144" y="896" width="736" height="32"/><object id="10" x="2848" y="896" width="32" height="640"/><object id="11" x="608" y="1696" width="1280" height="32"/><object id="12" x="1888" y="1696" width="32" height="768"/>
+    <object id="13" x="2240" y="2336" width="1024" height="32"/><object id="14" x="960" y="2816" width="32" height="704"/><object id="15" x="1280" y="3200" width="1408" height="32"/>
+  </objectgroup>
+  <objectgroup id="2" name="spawn"><object id="16" x="128" y="128" width="32" height="32"/></objectgroup>
+  <objectgroup id="3" name="enemy_spawns">
+    <object id="20" name="skeleton_1" x="672" y="512" width="30" height="30"><properties><property name="type" value="skeleton"/><property name="respawn" type="float" value="10"/></properties></object>
+    <object id="21" name="skeleton_2" x="1216" y="960" width="30" height="30"><properties><property name="type" value="skeleton"/><property name="respawn" type="float" value="12"/></properties></object>
+    <object id="22" name="skeleton_3" x="2240" y="1200" width="30" height="30"><properties><property name="type" value="skeleton"/><property name="respawn" type="float" value="12"/></properties></object>
+    <object id="23" name="skeleton_4" x="1696" y="2688" width="30" height="30"><properties><property name="type" value="skeleton"/><property name="respawn" type="float" value="14"/></properties></object>
+    <object id="24" name="labyrinth_guardian" x="3168" y="3264" width="48" height="48"><properties><property name="type" value="floor_boss"/><property name="respawn" type="float" value="60"/></properties></object>
+  </objectgroup>
+  <objectgroup id="4" name="npcs">
+    <object id="30" name="agil_50" x="192" y="192" width="28" height="32"><properties><property name="name" value="Agil"/><property name="role" value="trader"/><property name="dialog" value="This maze eats careless players. Stock potions before the boss room."/></properties></object>
+  </objectgroup>
+  <objectgroup id="5" name="exits"><object id="39" name="floor75_gate" x="3552" y="3552" width="96" height="96"/></objectgroup>
+</map>

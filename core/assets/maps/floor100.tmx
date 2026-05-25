@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="30">
+  <properties><property name="floorName" value="Ruby Palace"/></properties>
+  <objectgroup id="1" name="collision">
+    <object id="1" x="0" y="0" width="2560" height="32"/><object id="2" x="0" y="2528" width="2560" height="32"/><object id="3" x="0" y="0" width="32" height="2560"/><object id="4" x="2528" y="0" width="32" height="2560"/>
+    <object id="5" x="384" y="384" width="1792" height="32"/><object id="6" x="384" y="2144" width="1792" height="32"/><object id="7" x="384" y="384" width="32" height="1792"/><object id="8" x="2144" y="384" width="32" height="1792"/>
+  </objectgroup>
+  <objectgroup id="2" name="spawn"><object id="10" x="1216" y="640" width="32" height="32"/></objectgroup>
+  <objectgroup id="3" name="enemy_spawns">
+    <object id="20" name="heathcliff" x="1216" y="1696" width="48" height="48"><properties><property name="type" value="heathcliff"/><property name="respawn" type="float" value="120"/></properties></object>
+  </objectgroup>
+  <objectgroup id="4" name="npcs">
+    <object id="21" name="kayaba_echo" x="1152" y="768" width="28" height="32"><properties><property name="name" value="Kayaba"/><property name="role" value="story"/><property name="dialog" value="This is the final system boundary. Defeat Heathcliff and Aincrad will open."/></properties></object>
+  </objectgroup>
+  <objectgroup id="5" name="exits"><object id="29" name="floor1_return" x="1216" y="2240" width="96" height="96"/></objectgroup>
+</map>

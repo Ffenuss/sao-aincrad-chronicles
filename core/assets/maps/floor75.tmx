@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="120" height="120" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="42">
+  <properties><property name="floorName" value="Granzam"/></properties>
+  <objectgroup id="1" name="collision">
+    <object id="1" x="0" y="0" width="3840" height="32"/><object id="2" x="0" y="3808" width="3840" height="32"/><object id="3" x="0" y="0" width="32" height="3840"/><object id="4" x="3808" y="0" width="32" height="3840"/>
+    <object id="5" x="512" y="512" width="1024" height="32"/><object id="6" x="512" y="512" width="32" height="896"/><object id="7" x="1536" y="512" width="32" height="896"/>
+    <object id="8" x="1984" y="384" width="32" height="1216"/><object id="9" x="2400" y="800" width="896" height="32"/><object id="10" x="3264" y="800" width="32" height="896"/>
+    <object id="11" x="640" y="2016" width="2560" height="32"/><object id="12" x="640" y="2016" width="32" height="704"/><object id="13" x="3200" y="2016" width="32" height="704"/>
+    <object id="14" x="960" y="3104" width="1920" height="32"/>
+  </objectgroup>
+  <objectgroup id="2" name="spawn"><object id="16" x="128" y="128" width="32" height="32"/></objectgroup>
+  <objectgroup id="3" name="enemy_spawns">
+    <object id="20" name="knight_1" x="768" y="736" width="30" height="30"><properties><property name="type" value="knight"/><property name="respawn" type="float" value="12"/></properties></object>
+    <object id="21" name="knight_2" x="1376" y="1184" width="30" height="30"><properties><property name="type" value="knight"/><property name="respawn" type="float" value="14"/></properties></object>
+    <object id="22" name="knight_3" x="2496" y="1056" width="30" height="30"><properties><property name="type" value="knight"/><property name="respawn" type="float" value="14"/></properties></object>
+    <object id="23" name="knight_4" x="2784" y="2400" width="30" height="30"><properties><property name="type" value="knight"/><property name="respawn" type="float" value="16"/></properties></object>
+    <object id="24" name="granzam_subboss" x="3360" y="3264" width="48" height="48"><properties><property name="type" value="floor_boss"/><property name="respawn" type="float" value="60"/></properties></object>
+  </objectgroup>
+  <objectgroup id="4" name="npcs">
+    <object id="30" name="asuna_75" x="192" y="192" width="28" height="32"><properties><property name="name" value="Asuna"/><property name="role" value="ally"/><property name="dialog" value="The Knights of the Blood patrol this fortress. Break their guard, then strike."/></properties></object>
+  </objectgroup>
+  <objectgroup id="5" name="exits"><object id="40" name="floor100_gate" x="3552" y="3552" width="96" height="96"/></objectgroup>
+</map>
