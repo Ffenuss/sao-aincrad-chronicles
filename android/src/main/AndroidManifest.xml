@@ -10,6 +10,7 @@
         android:label="SAO: Aincrad Chronicles"
         android:supportsRtl="true"
         android:theme="@style/Theme.SAO">
+
         <activity
             android:name=".AndroidLauncher"
             android:exported="true"
@@ -19,5 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".CrashActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SAO" />
     </application>
 </manifest>
