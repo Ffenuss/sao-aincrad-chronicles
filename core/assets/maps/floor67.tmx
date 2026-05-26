@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="96" height="96" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="21">
+  <properties>
+    <property name="floorName" value="Ruined Battleground"/>
+  </properties>
+  <imagelayer id="6" name="visual_backdrop">
+    <image source="floor67_backdrop.png" width="3072" height="3072"/>
+  </imagelayer>
+  <objectgroup id="1" name="collision">
+    <object id="1" x="0" y="0" width="3072" height="32"/>
+    <object id="2" x="0" y="3040" width="3072" height="32"/>
+    <object id="3" x="0" y="0" width="32" height="3072"/>
+    <object id="4" x="3040" y="0" width="32" height="3072"/>
+    <object id="5" x="1344" y="1344" width="384" height="64"/>
+    <object id="6" x="1344" y="1664" width="384" height="64"/>
+    <object id="7" x="1344" y="1344" width="64" height="384"/>
+    <object id="8" x="1664" y="1344" width="64" height="384"/>
+    <object id="9" x="256" y="320" width="256" height="96"/>
+    <object id="10" x="2560" y="576" width="320" height="96"/>
+    <object id="11" x="384" y="2624" width="384" height="96"/>
+  </objectgroup>
+  <objectgroup id="2" name="spawn">
+    <object id="12" x="96" y="96" width="32" height="32"/>
+  </objectgroup>
+  <objectgroup id="3" name="enemy_spawns">
+    <object id="13" name="spawn_67_1" x="320" y="256" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="10"/>
+      </properties>
+    </object>
+    <object id="14" name="spawn_67_2" x="640" y="352" width="28" height="24">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="11"/>
+      </properties>
+    </object>
+    <object id="15" name="spawn_67_3" x="896" y="576" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="12"/>
+      </properties>
+    </object>
+    <object id="16" name="spawn_67_4" x="544" y="864" width="28" height="24">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="13"/>
+      </properties>
+    </object>
+    <object id="17" name="boss_67" x="1728" y="1728" width="48" height="48">
+      <properties>
+        <property name="type" value="floor_boss"/>
+        <property name="respawn" type="float" value="90"/>
+      </properties>
+    </object>
+  </objectgroup>
+  <objectgroup id="4" name="npcs">
+    <object id="18" name="klein_67" x="192" y="192" width="28" height="32">
+      <properties>
+        <property name="name" value="Klein"/>
+        <property name="role" value="ally"/>
+        <property name="dialog" value="Frontline scouts saw a heavy guardian near the collapsed wall."/>
+      </properties>
+    </object>
+  </objectgroup>
+  <objectgroup id="5" name="exits">
+    <object id="19" name="to_floor_74" x="2880" y="2880" width="128" height="128">
+      <properties>
+        <property name="toFloor" type="int" value="74"/>
+      </properties>
+    </object>
+  </objectgroup>
+</map>

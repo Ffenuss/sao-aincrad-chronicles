@@ -1,68 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="110" height="110" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="32">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="74" height="74" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="21">
   <properties>
     <property name="floorName" value="Dark Elf Castle"/>
   </properties>
+  <imagelayer id="6" name="visual_backdrop">
+    <image source="floor25_backdrop.png" width="2368" height="2368"/>
+  </imagelayer>
   <objectgroup id="1" name="collision">
-    <object id="1" x="0" y="0" width="3520" height="32"/>
-    <object id="2" x="0" y="3488" width="3520" height="32"/>
-    <object id="3" x="0" y="0" width="32" height="3520"/>
-    <object id="4" x="3488" y="0" width="32" height="3520"/>
-    <object id="5" x="544" y="448" width="384" height="32"/>
-    <object id="6" x="544" y="448" width="32" height="320"/>
-    <object id="7" x="1184" y="736" width="32" height="384"/>
-    <object id="8" x="1376" y="1056" width="448" height="32"/>
-    <object id="9" x="2144" y="928" width="32" height="480"/>
-    <object id="10" x="2400" y="1472" width="384" height="32"/>
-    <object id="11" x="896" y="1888" width="480" height="32"/>
-    <object id="12" x="1568" y="2240" width="32" height="448"/>
-    <object id="13" x="2240" y="2592" width="544" height="32"/>
-    <object id="14" x="2944" y="2752" width="32" height="384"/>
+    <object id="1" x="0" y="0" width="2368" height="32"/>
+    <object id="2" x="0" y="2336" width="2368" height="32"/>
+    <object id="3" x="0" y="0" width="32" height="2368"/>
+    <object id="4" x="2336" y="0" width="32" height="2368"/>
+    <object id="5" x="992" y="992" width="384" height="64"/>
+    <object id="6" x="992" y="1312" width="384" height="64"/>
+    <object id="7" x="992" y="992" width="64" height="384"/>
+    <object id="8" x="1312" y="992" width="64" height="384"/>
+    <object id="9" x="256" y="320" width="256" height="96"/>
+    <object id="10" x="1856" y="576" width="320" height="96"/>
+    <object id="11" x="384" y="1920" width="384" height="96"/>
   </objectgroup>
   <objectgroup id="2" name="spawn">
-    <object id="15" x="128" y="128" width="32" height="32"/>
+    <object id="12" x="96" y="96" width="32" height="32"/>
   </objectgroup>
   <objectgroup id="3" name="enemy_spawns">
-    <object id="20" name="dark_elf_1" x="416" y="256" width="28" height="24">
+    <object id="13" name="spawn_25_1" x="320" y="256" width="28" height="24">
       <properties>
-        <property name="type" value="dark_elf"/>
-        <property name="respawn" type="float" value="9"/>
-      </properties>
-    </object>
-    <object id="21" name="dark_elf_2" x="768" y="864" width="28" height="24">
-      <properties>
-        <property name="type" value="dark_elf"/>
+        <property name="type" value="slime"/>
         <property name="respawn" type="float" value="10"/>
       </properties>
     </object>
-    <object id="22" name="dark_elf_3" x="1472" y="1280" width="28" height="24">
+    <object id="14" name="spawn_25_2" x="640" y="352" width="28" height="24">
       <properties>
         <property name="type" value="dark_elf"/>
         <property name="respawn" type="float" value="11"/>
       </properties>
     </object>
-    <object id="23" name="dark_elf_4" x="2048" y="1824" width="28" height="24">
+    <object id="15" name="spawn_25_3" x="896" y="576" width="28" height="24">
       <properties>
-        <property name="type" value="dark_elf"/>
+        <property name="type" value="slime"/>
         <property name="respawn" type="float" value="12"/>
       </properties>
     </object>
-    <object id="24" name="dark_elf_5" x="2800" y="2672" width="28" height="24">
+    <object id="16" name="spawn_25_4" x="544" y="864" width="28" height="24">
       <properties>
         <property name="type" value="dark_elf"/>
-        <property name="respawn" type="float" value="12"/>
+        <property name="respawn" type="float" value="13"/>
+      </properties>
+    </object>
+    <object id="17" name="boss_25" x="1376" y="1376" width="48" height="48">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="90"/>
       </properties>
     </object>
   </objectgroup>
-  <objectgroup id="4" name="exits">
-    <object id="29" name="floor1_return" x="128" y="3200" width="96" height="96"/>
-  </objectgroup>
-  <objectgroup id="5" name="npcs">
-    <object id="30" name="dark_elf_scout" x="192" y="192" width="28" height="32">
+  <objectgroup id="4" name="npcs">
+    <object id="18" name="dark_elf_scout" x="192" y="192" width="28" height="32">
       <properties>
         <property name="name" value="Dark Elf Scout"/>
         <property name="role" value="story"/>
         <property name="dialog" value="The castle route is hostile, but the labyrinth gate lies beyond the patrols."/>
+      </properties>
+    </object>
+  </objectgroup>
+  <objectgroup id="5" name="exits">
+    <object id="19" name="to_floor_35" x="2176" y="2176" width="128" height="128">
+      <properties>
+        <property name="toFloor" type="int" value="35"/>
       </properties>
     </object>
   </objectgroup>

@@ -23,8 +23,11 @@ abstract class EnemyEntity(
     var attackDamage = 4
     var attackCooldown = 0f
     var attackTimer = 0f
+    var facing: PlayerEntity.Facing = PlayerEntity.Facing.DOWN
+        protected set
     var state: AIState = AIState.IDLE
         protected set
+    var networkId: String = ""
 
     val isDead: Boolean
         get() = state == AIState.DEATH || hp <= 0
@@ -39,6 +42,19 @@ abstract class EnemyEntity(
         }
     }
 
+    fun applyReplicatedState(x: Float, y: Float, hpValue: Int, dead: Boolean) {
+        position.set(x, y)
+        hp = hpValue.coerceAtLeast(0)
+        state = if (dead || hp <= 0) {
+            AIState.DEATH
+        } else if (state == AIState.DEATH) {
+            AIState.IDLE
+        } else {
+            state
+        }
+        syncBounds()
+    }
+
     abstract fun update(
         delta: Float,
         player: PlayerEntity,
@@ -50,6 +66,23 @@ abstract class EnemyEntity(
     fun updateCommon(delta: Float) {
         if (attackCooldown > 0f) attackCooldown = maxOf(0f, attackCooldown - delta)
         if (attackTimer > 0f) attackTimer = maxOf(0f, attackTimer - delta)
+    }
+
+    protected fun updateFacingFromVelocity() {
+        val vx = velocity.x
+        val vy = velocity.y
+        if (kotlin.math.abs(vx) < 0.01f && kotlin.math.abs(vy) < 0.01f) return
+        val angle = kotlin.math.atan2(vy.toDouble(), vx.toDouble()) * (180.0 / Math.PI)
+        facing = when {
+            angle >= 157.5 || angle < -157.5 -> PlayerEntity.Facing.LEFT
+            angle >= 112.5 -> PlayerEntity.Facing.UP_LEFT
+            angle >= 67.5 -> PlayerEntity.Facing.UP
+            angle >= 22.5 -> PlayerEntity.Facing.UP_RIGHT
+            angle >= -22.5 -> PlayerEntity.Facing.RIGHT
+            angle >= -67.5 -> PlayerEntity.Facing.DOWN_RIGHT
+            angle >= -112.5 -> PlayerEntity.Facing.DOWN
+            else -> PlayerEntity.Facing.DOWN_LEFT
+        }
     }
 
     protected fun syncBounds() {

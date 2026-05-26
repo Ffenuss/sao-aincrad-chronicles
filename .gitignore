@@ -4,3 +4,23 @@ local.properties
 .idea/
 *.iml
 .DS_Store
+
+# Unity generated folders
+unity/[Ll]ibrary/
+unity/[Tt]emp/
+unity/[Oo]bj/
+unity/[Bb]uild/
+unity/[Bb]uilds/
+unity/[Ll]ogs/
+unity/[Uu]ser[Ss]ettings/
+unity/[Mm]emoryCaptures/
+unity/[Rr]ecordings/
+unity/[Pp]rofiling/
+unity/.utmp/
+unity/Assets/_Recovery/
+unity/*.log
+
+# Unity generated files
+unity/*.apk
+unity/*.aab
+unity/*.unitypackage

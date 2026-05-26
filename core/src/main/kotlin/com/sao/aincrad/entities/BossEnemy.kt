@@ -81,6 +81,7 @@ class BossEnemy(
             moveToward(dx, dy, speed)
         }
 
+        updateFacingFromVelocity()
         moveWithCollision(delta, collisionRects, worldBounds)
         syncBounds()
     }

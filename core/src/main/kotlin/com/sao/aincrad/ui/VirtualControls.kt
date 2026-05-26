@@ -18,17 +18,17 @@ class VirtualControls : InputAdapter() {
     private val joystickCenter = Vector2()
     private val joystickKnob = Vector2()
     private val joystickDelta = Vector2()
-    private val joystickRadius = 72f
+    private val joystickRadius = 64f
 
     private var joystickPointer = -1
     private var width = 0f
     private var height = 0f
 
-    val attackButton = ActionButton("attack", "ATTACK")
-    val skill1Button = ActionButton("skill1", "SKILL 1")
-    val skill2Button = ActionButton("skill2", "SKILL 2")
-    val skill3Button = ActionButton("skill3", "SKILL 3")
-    val dodgeButton = ActionButton("dodge", "DODGE")
+    val attackButton = ActionButton("attack", "ATK")
+    val skill1Button = ActionButton("skill1", "S1")
+    val skill2Button = ActionButton("skill2", "S2")
+    val skill3Button = ActionButton("skill3", "S3")
+    val dodgeButton = ActionButton("dodge", "DASH")
     val inventoryButton = ActionButton("inventory", "BAG")
 
     private val buttons = listOf(attackButton, skill1Button, skill2Button, skill3Button, dodgeButton, inventoryButton)
@@ -37,20 +37,20 @@ class VirtualControls : InputAdapter() {
         this.width = width.toFloat()
         this.height = height.toFloat()
 
-        joystickCenter.set(this.width * 0.16f, this.height * 0.19f)
+        joystickCenter.set(this.width * 0.16f, this.height * 0.20f)
         joystickKnob.set(joystickCenter)
 
-        val buttonSize = this.width.coerceAtMost(this.height) * 0.11f
-        val padding = buttonSize * 0.35f
-        val right = this.width - padding - buttonSize
-        val bottom = padding
-        val gap = buttonSize + padding * 0.75f
+        val buttonSize = this.width.coerceAtMost(this.height) * 0.090f
+        val padding = buttonSize * 0.42f
+        val clusterX = this.width - padding - buttonSize * 1.35f
+        val clusterY = padding + buttonSize * 0.45f
+        val shift = buttonSize * 0.92f
 
-        attackButton.rect.set(right, bottom + gap * 1.6f, buttonSize, buttonSize)
-        skill1Button.rect.set(right - gap, bottom + gap, buttonSize, buttonSize)
-        skill2Button.rect.set(right, bottom + gap, buttonSize, buttonSize)
-        skill3Button.rect.set(right + gap, bottom + gap, buttonSize, buttonSize)
-        dodgeButton.rect.set(right - gap * 0.5f, bottom, buttonSize, buttonSize)
+        attackButton.rect.set(clusterX, clusterY + shift * 1.20f, buttonSize, buttonSize)
+        skill1Button.rect.set(clusterX - shift, clusterY + shift * 0.50f, buttonSize, buttonSize)
+        skill2Button.rect.set(clusterX + shift, clusterY + shift * 0.50f, buttonSize, buttonSize)
+        skill3Button.rect.set(clusterX, clusterY + shift * 2.00f, buttonSize, buttonSize)
+        dodgeButton.rect.set(clusterX, clusterY - shift * 0.35f, buttonSize, buttonSize)
         inventoryButton.rect.set(this.width - padding - buttonSize, this.height - padding - buttonSize, buttonSize, buttonSize)
     }
 

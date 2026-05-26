@@ -27,10 +27,24 @@ class CombatController(
     }
 
     fun update(state: WorldState, delta: Float, spawnSystem: EnemySpawnSystem) {
+        update(state, delta, spawnSystem, onEnemyDamaged = null, onEnemyKilled = null)
+    }
+
+    fun update(
+        state: WorldState,
+        delta: Float,
+        spawnSystem: EnemySpawnSystem,
+        onEnemyDamaged: ((EnemyEntity, Int, Boolean) -> Unit)? = null,
+        onEnemyKilled: ((EnemyEntity) -> Unit)? = null,
+    ) {
         spawnSystem.update(delta, state.enemies)
         updateEnemies(state, delta)
-        resolvePlayerAttack(state)
+        resolvePlayerAttack(state, onEnemyDamaged, onEnemyKilled)
         updateLoot(state, delta)
+        updateDamagePopups(state, delta)
+    }
+
+    fun updateReplica(state: WorldState, delta: Float) {
         updateDamagePopups(state, delta)
     }
 
@@ -49,7 +63,11 @@ class CombatController(
         }
     }
 
-    private fun resolvePlayerAttack(state: WorldState) {
+    private fun resolvePlayerAttack(
+        state: WorldState,
+        onEnemyDamaged: ((EnemyEntity, Int, Boolean) -> Unit)? = null,
+        onEnemyKilled: ((EnemyEntity) -> Unit)? = null,
+    ) {
         if (state.player.attackTimer <= 0f) {
             lastProcessedAttackId = -1
             return
@@ -59,12 +77,13 @@ class CombatController(
         val hitbox = state.player.attackHitbox()
         val crit = MathUtils.random() < 0.1f
         for (enemy in state.enemies) {
-            if (enemy.isDead || !enemy.bounds.overlaps(hitbox)) continue
+            if (enemy.isDead || !isPlayerAttackConnecting(state, enemy, hitbox)) continue
 
             val baseDamage = ((state.player.stats.str + state.inventory.statBonuses().str) * state.player.attackMultiplier).toInt().coerceAtLeast(1)
             val reduced = (baseDamage - enemy.defense).coerceAtLeast(1)
             val finalDamage = if (crit) (reduced * 1.5f).toInt().coerceAtLeast(1) else reduced
             enemy.takeDamage(finalDamage)
+            onEnemyDamaged?.invoke(enemy, finalDamage, crit)
             audioManager.playSfx("hit")
             state.damagePopups += DamagePopup(
                 finalDamage.toString(),
@@ -72,9 +91,40 @@ class CombatController(
                 if (crit) Color.YELLOW else Color.WHITE,
             )
 
-            if (enemy.isDead) onEnemyDeath(state, enemy)
+            if (enemy.isDead) {
+                onEnemyDeath(state, enemy)
+                onEnemyKilled?.invoke(enemy)
+            }
         }
         lastProcessedAttackId = state.player.attackSequenceId
+    }
+
+    private fun isPlayerAttackConnecting(state: WorldState, enemy: EnemyEntity, hitbox: com.badlogic.gdx.math.Rectangle): Boolean {
+        if (enemy.bounds.overlaps(hitbox)) return true
+
+        val playerCenter = Vector2(
+            state.player.bounds.x + state.player.bounds.width * 0.5f,
+            state.player.bounds.y + state.player.bounds.height * 0.5f,
+        )
+        val enemyCenter = Vector2(
+            enemy.bounds.x + enemy.bounds.width * 0.5f,
+            enemy.bounds.y + enemy.bounds.height * 0.5f,
+        )
+        val distance2 = playerCenter.dst2(enemyCenter)
+        if (distance2 > 48f * 48f) return false
+
+        val dir = when (state.player.facing) {
+            com.sao.aincrad.entities.PlayerEntity.Facing.UP -> Vector2(0f, 1f)
+            com.sao.aincrad.entities.PlayerEntity.Facing.UP_RIGHT -> Vector2(1f, 1f).nor()
+            com.sao.aincrad.entities.PlayerEntity.Facing.RIGHT -> Vector2(1f, 0f)
+            com.sao.aincrad.entities.PlayerEntity.Facing.DOWN_RIGHT -> Vector2(1f, -1f).nor()
+            com.sao.aincrad.entities.PlayerEntity.Facing.DOWN -> Vector2(0f, -1f)
+            com.sao.aincrad.entities.PlayerEntity.Facing.DOWN_LEFT -> Vector2(-1f, -1f).nor()
+            com.sao.aincrad.entities.PlayerEntity.Facing.LEFT -> Vector2(-1f, 0f)
+            com.sao.aincrad.entities.PlayerEntity.Facing.UP_LEFT -> Vector2(-1f, 1f).nor()
+        }
+        val toEnemy = enemyCenter.sub(playerCenter).nor()
+        return dir.dot(toEnemy) > 0.10f
     }
 
     private fun onEnemyDeath(state: WorldState, enemy: EnemyEntity) {
@@ -93,6 +143,10 @@ class CombatController(
             state.ui.pickupToastTimer = 2.5f
             saveManager.save(1, state.floor.floorNumber, state.player, state.inventory, storyController.state)
         }
+    }
+
+    fun finalizeEnemyDeath(state: WorldState, enemy: EnemyEntity) {
+        onEnemyDeath(state, enemy)
     }
 
     private fun updateLoot(state: WorldState, delta: Float) {

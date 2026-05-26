@@ -52,14 +52,17 @@ class EnemySpawnSystem(
     }
 
     private fun createEnemy(spawn: EnemySpawn): EnemyEntity {
-        return when (spawn.type) {
+        val enemy = when (spawn.type) {
             "skeleton" -> ConfigEnemy(spawn.x, spawn.y, "skeleton", 44, 240f, 34f, 48f, 10, 5)
             "knight" -> ConfigEnemy(spawn.x, spawn.y, "knight", 68, 260f, 38f, 54f, 14, 8)
             "heathcliff" -> BossEnemy(spawn.x, spawn.y, "Heathcliff", 260, 20)
+            "boss" -> BossEnemy(spawn.x, spawn.y, "Aincrad Warden", 220, 18)
             "floor_boss" -> BossEnemy(spawn.x, spawn.y, "Guardian", 160, 16)
             "dark_elf" -> DarkElfEnemy(spawn.x, spawn.y)
             "slime" -> SlimeEnemy(spawn.x, spawn.y)
             else -> SlimeEnemy(spawn.x, spawn.y)
         }
+        enemy.networkId = spawn.id
+        return enemy
     }
 }

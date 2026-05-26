@@ -1,67 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="28">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="30">
   <properties>
     <property name="floorName" value="Town of Beginnings"/>
   </properties>
-  <objectgroup id="1" name="collision">
-    <object id="1" x="0" y="0" width="3200" height="32"/>
-    <object id="2" x="0" y="3168" width="3200" height="32"/>
-    <object id="3" x="0" y="0" width="32" height="3200"/>
-    <object id="4" x="3168" y="0" width="32" height="3200"/>
-    <object id="5" x="448" y="416" width="192" height="32"/>
-    <object id="6" x="960" y="704" width="224" height="32"/>
-    <object id="7" x="1600" y="1024" width="32" height="224"/>
-    <object id="8" x="2176" y="1344" width="224" height="32"/>
-    <object id="9" x="736" y="1856" width="256" height="32"/>
-    <object id="10" x="1312" y="2080" width="32" height="224"/>
-    <object id="11" x="1920" y="2400" width="224" height="32"/>
-    <object id="12" x="2464" y="2720" width="32" height="192"/>
+  <tileset firstgid="1" name="town_tiles" tilewidth="32" tileheight="32" tilecount="12" columns="4">
+    <image source="town_tiles.png" width="128" height="96"/>
+  </tileset>
+  <imagelayer id="1" name="visual_backdrop">
+    <image source="floor1_scene.png" width="1280" height="1280"/>
+  </imagelayer>
+  <layer id="2" name="blocked" width="40" height="40" visible="0">
+    <data encoding="csv">
+0,0,0,0,7,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,7,7,7,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,0,0,
+0,0,0,0,7,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,7,7,7,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,0,0,
+0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,7,7,7,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,0,0,
+0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,7,7,0,0,0,7,7,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,0,0,
+0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,7,7,0,0,0,7,7,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,0,0,
+0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,7,7,0,0,0,7,7,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,0,0,
+0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,7,7,0,0,0,7,7,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,
+0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,
+0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,
+0,7,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,
+0,7,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,
+0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,
+0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,7,0,0,0,0,7,7,7,7,
+0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,7,7,7,7,0,0,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,0,0,7,7,7,7,7,0,
+0,7,7,7,7,0,0,7,7,7,7,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,7,7,7,7,0,0,7,7,7,7,7,0,
+0,7,7,7,7,0,0,7,7,7,7,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,7,7,7,7,0,0,7,7,7,7,7,0,
+0,7,7,7,7,0,0,7,7,7,7,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,7,7,7,7,0,0,7,7,7,7,7,0,
+0,7,7,7,7,0,0,7,7,7,7,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,7,7,7,7,0,0,7,7,7,7,7,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,
+0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,
+0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,
+0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,
+0,0,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,
+0,0,7,7,7,7,7,7,7,7,7,0,0,7,7,7,7,7,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,
+0,0,7,7,7,7,7,7,7,7,7,0,0,7,7,7,7,7,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,0,7,7,7,7,7,
+0,0,7,7,7,7,7,7,7,7,7,0,0,7,7,7,7,7,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,0,7,7,7,7,7,
+0,0,7,7,7,7,7,7,7,7,7,0,0,7,7,7,7,7,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,0,7,7,7,7,7,
+0,0,7,7,7,7,7,7,7,7,7,0,0,7,7,7,7,7,0,0,0,0,0,7,7,7,7,7,7,7,7,7,7,7,0,7,7,7,7,7,
+0,0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,7,0,7,7,7,7,7,
+0,0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,
+0,0,7,7,7,7,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,
+0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,
+0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,
+0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,
+0,0,0,0,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7
+    </data>
+  </layer>
+  <objectgroup id="3" name="spawn">
+    <object id="10" x="640" y="780" width="32" height="32"/>
   </objectgroup>
-  <objectgroup id="2" name="spawn">
-    <object id="13" x="96" y="96" width="32" height="32"/>
-  </objectgroup>
-  <objectgroup id="3" name="enemy_spawns">
-    <object id="16" name="slime_field_1" x="336" y="160" width="28" height="24">
-      <properties>
-        <property name="type" value="slime"/>
-        <property name="respawn" type="float" value="8"/>
-      </properties>
-    </object>
-    <object id="17" name="slime_field_2" x="512" y="256" width="28" height="24">
-      <properties>
-        <property name="type" value="slime"/>
-        <property name="respawn" type="float" value="10"/>
-      </properties>
-    </object>
-    <object id="18" name="slime_field_3" x="704" y="544" width="28" height="24">
+  <objectgroup id="4" name="enemy_spawns">
+    <object id="11" name="slime_nw" x="66" y="930" width="28" height="24">
       <properties>
         <property name="type" value="slime"/>
         <property name="respawn" type="float" value="12"/>
       </properties>
     </object>
-    <object id="19" name="slime_field_4" x="1024" y="512" width="28" height="24">
+    <object id="12" name="slime_ne" x="962" y="930" width="28" height="24">
       <properties>
         <property name="type" value="slime"/>
         <property name="respawn" type="float" value="12"/>
       </properties>
     </object>
+    <object id="13" name="slime_w" x="226" y="482" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="14"/>
+      </properties>
+    </object>
+    <object id="14" name="slime_e" x="962" y="482" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="14"/>
+      </properties>
+    </object>
   </objectgroup>
-  <objectgroup id="4" name="exits">
-    <object id="24" name="floor25_gate" x="2960" y="2960" width="96" height="96"/>
+  <objectgroup id="5" name="exits">
+    <object id="15" name="to_floor_2" x="1030" y="1060" width="150" height="150">
+      <properties>
+        <property name="toFloor" type="int" value="2"/>
+      </properties>
+    </object>
   </objectgroup>
-  <objectgroup id="5" name="npcs">
-    <object id="25" name="klein_tutorial" x="160" y="128" width="28" height="32">
+  <objectgroup id="6" name="npcs">
+    <object id="16" name="klein_tutorial" x="706" y="794" width="28" height="32">
       <properties>
         <property name="name" value="Klein"/>
         <property name="role" value="ally"/>
-        <property name="dialog" value="Kirito, keep moving and watch the enemy wind-up. The gate ahead opens toward the higher floors."/>
+        <property name="dialog" value="Welcome to Town of Beginnings. Follow the road, clear slimes, and head to the northeast gate."/>
       </properties>
     </object>
-    <object id="26" name="floor1_trader" x="224" y="128" width="28" height="32">
+    <object id="17" name="floor1_trader" x="564" y="794" width="28" height="32">
       <properties>
         <property name="name" value="Town Trader"/>
         <property name="role" value="trader"/>
-        <property name="dialog" value="Welcome to the Town of Beginnings. I can spare one potion for your climb."/>
+        <property name="dialog" value="Use potions and keep distance from mobs. Come back if you need supplies."/>
       </properties>
     </object>
   </objectgroup>

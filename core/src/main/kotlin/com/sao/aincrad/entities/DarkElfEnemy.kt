@@ -104,6 +104,7 @@ class DarkElfEnemy(
             AIState.DEATH -> velocity.setZero()
         }
 
+        updateFacingFromVelocity()
         moveWithCollision(delta, collisionRects, worldBounds)
         syncBounds()
     }

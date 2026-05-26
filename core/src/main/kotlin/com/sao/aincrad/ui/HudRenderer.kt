@@ -31,6 +31,7 @@ class HudRenderer(
         pickupToast: String,
         pickupToastTimer: Float,
         boss: BossEnemy?,
+        debugLines: List<String> = emptyList(),
     ) {
         font.color = Color.WHITE
         font.draw(batch, "HP ${player.stats.hp}/${player.stats.maxHp}", 28f, height - 42f)
@@ -51,6 +52,15 @@ class HudRenderer(
             font.color = Color.WHITE
             layout.setText(font, boss.title())
             font.draw(batch, boss.title(), (width - layout.width) * 0.5f, height - 18f)
+        }
+
+        if (debugLines.isNotEmpty()) {
+            var y = height - 170f
+            font.color = Color(0.65f, 0.95f, 1f, 1f)
+            debugLines.forEach { line ->
+                font.draw(batch, line, 28f, y)
+                y -= 18f
+            }
         }
     }
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="21">
+  <properties>
+    <property name="floorName" value="Grandzam Lower Town"/>
+  </properties>
+  <imagelayer id="6" name="visual_backdrop">
+    <image source="floor55_backdrop.png" width="2880" height="2880"/>
+  </imagelayer>
+  <objectgroup id="1" name="collision">
+    <object id="1" x="0" y="0" width="2880" height="32"/>
+    <object id="2" x="0" y="2848" width="2880" height="32"/>
+    <object id="3" x="0" y="0" width="32" height="2880"/>
+    <object id="4" x="2848" y="0" width="32" height="2880"/>
+    <object id="5" x="1248" y="1248" width="384" height="64"/>
+    <object id="6" x="1248" y="1568" width="384" height="64"/>
+    <object id="7" x="1248" y="1248" width="64" height="384"/>
+    <object id="8" x="1568" y="1248" width="64" height="384"/>
+    <object id="9" x="256" y="320" width="256" height="96"/>
+    <object id="10" x="2368" y="576" width="320" height="96"/>
+    <object id="11" x="384" y="2432" width="384" height="96"/>
+  </objectgroup>
+  <objectgroup id="2" name="spawn">
+    <object id="12" x="96" y="96" width="32" height="32"/>
+  </objectgroup>
+  <objectgroup id="3" name="enemy_spawns">
+    <object id="13" name="spawn_55_1" x="320" y="256" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="10"/>
+      </properties>
+    </object>
+    <object id="14" name="spawn_55_2" x="640" y="352" width="28" height="24">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="11"/>
+      </properties>
+    </object>
+    <object id="15" name="spawn_55_3" x="896" y="576" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="12"/>
+      </properties>
+    </object>
+    <object id="16" name="spawn_55_4" x="544" y="864" width="28" height="24">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="13"/>
+      </properties>
+    </object>
+    <object id="17" name="boss_55" x="1632" y="1632" width="48" height="48">
+      <properties>
+        <property name="type" value="knight"/>
+        <property name="respawn" type="float" value="90"/>
+      </properties>
+    </object>
+  </objectgroup>
+  <objectgroup id="4" name="npcs">
+    <object id="18" name="lisbeth_55" x="192" y="192" width="28" height="32">
+      <properties>
+        <property name="name" value="Lisbeth"/>
+        <property name="role" value="trader"/>
+        <property name="dialog" value="Your blade needs reinforcement before the upper floors."/>
+      </properties>
+    </object>
+  </objectgroup>
+  <objectgroup id="5" name="exits">
+    <object id="19" name="to_floor_67" x="2688" y="2688" width="128" height="128">
+      <properties>
+        <property name="toFloor" type="int" value="67"/>
+      </properties>
+    </object>
+  </objectgroup>
+</map>

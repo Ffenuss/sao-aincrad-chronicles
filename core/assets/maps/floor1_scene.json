@@ -1,0 +1,107 @@
+{
+  "floorNumber": 1,
+  "floorName": "Town of Beginnings",
+  "mapTiles": 40,
+  "tileSize": 32,
+  "artSource": "floor1_scene_master.png",
+  "spawn": { "x": 640, "y": 780, "width": 32, "height": 32 },
+  "exit": { "name": "to_floor_2", "x": 1030, "y": 1060, "width": 150, "height": 150, "toFloor": 2 },
+  "enemySpawns": [
+    { "id": "slime_nw", "type": "slime", "x": 66, "y": 930, "width": 28, "height": 24, "respawn": 12 },
+    { "id": "slime_ne", "type": "slime", "x": 962, "y": 930, "width": 28, "height": 24, "respawn": 12 },
+    { "id": "slime_w", "type": "slime", "x": 226, "y": 482, "width": 28, "height": 24, "respawn": 14 },
+    { "id": "slime_e", "type": "slime", "x": 962, "y": 482, "width": 28, "height": 24, "respawn": 14 }
+  ],
+  "npcs": [
+    {
+      "id": "klein_tutorial",
+      "name": "Klein",
+      "role": "ally",
+      "x": 706,
+      "y": 794,
+      "width": 28,
+      "height": 32,
+      "dialog": "Welcome to Town of Beginnings. Follow the road, clear slimes, and head to the northeast gate."
+    },
+    {
+      "id": "floor1_trader",
+      "name": "Town Trader",
+      "role": "trader",
+      "x": 564,
+      "y": 794,
+      "width": 28,
+      "height": 32,
+      "dialog": "Use potions and keep distance from mobs. Come back if you need supplies."
+    }
+  ],
+  "roads": [
+    { "x0": 0, "y0": 18, "x1": 39, "y1": 22, "kind": "main" },
+    { "x0": 18, "y0": 0, "x1": 22, "y1": 39, "kind": "main" },
+    { "x0": 14, "y0": 14, "x1": 25, "y1": 25, "kind": "plaza" },
+    { "x0": 2, "y0": 29, "x1": 16, "y1": 31, "kind": "dirt" },
+    { "x0": 23, "y0": 29, "x1": 37, "y1": 31, "kind": "dirt" },
+    { "x0": 2, "y0": 9, "x1": 16, "y1": 11, "kind": "dirt" },
+    { "x0": 23, "y0": 9, "x1": 37, "y1": 11, "kind": "dirt" }
+  ],
+  "fountain": { "x0": 18, "y0": 18, "x1": 21, "y1": 21 },
+  "blockers": [
+    { "name": "house_tl_lower", "x0": 1, "y0": 2, "x1": 7, "y1": 10 },
+    { "name": "house_tl_upper", "x0": 4, "y0": 0, "x1": 11, "y1": 8 },
+    { "name": "gate_left_pillar", "x0": 16, "y0": 0, "x1": 17, "y1": 6 },
+    { "name": "gate_right_pillar", "x0": 21, "y0": 0, "x1": 22, "y1": 6 },
+    { "name": "gate_upper_beam", "x0": 17, "y0": 0, "x1": 21, "y1": 2 },
+    { "name": "house_tr_upper", "x0": 29, "y0": 0, "x1": 37, "y1": 8 },
+    { "name": "house_tr_side", "x0": 36, "y0": 6, "x1": 39, "y1": 12 },
+    { "name": "upper_left_garden", "x0": 7, "y0": 9, "x1": 12, "y1": 13 },
+    { "name": "upper_right_garden", "x0": 25, "y0": 9, "x1": 31, "y1": 13 },
+    { "name": "stall_left_blue", "x0": 1, "y0": 16, "x1": 4, "y1": 20 },
+    { "name": "stall_left_red", "x0": 7, "y0": 16, "x1": 10, "y1": 20 },
+    { "name": "fountain_core", "x0": 17, "y0": 17, "x1": 22, "y1": 22 },
+    { "name": "stall_right_cream", "x0": 28, "y0": 16, "x1": 31, "y1": 20 },
+    { "name": "stall_right_green", "x0": 34, "y0": 16, "x1": 38, "y1": 20 },
+    { "name": "lower_left_garden", "x0": 1, "y0": 23, "x1": 6, "y1": 26 },
+    { "name": "lower_right_garden", "x0": 29, "y0": 23, "x1": 34, "y1": 26 },
+    { "name": "house_bl_large", "x0": 2, "y0": 27, "x1": 10, "y1": 35 },
+    { "name": "lower_mid_left_garden", "x0": 13, "y0": 28, "x1": 17, "y1": 32 },
+    { "name": "house_br_upper", "x0": 28, "y0": 27, "x1": 33, "y1": 33 },
+    { "name": "lower_mid_right_garden", "x0": 23, "y0": 28, "x1": 27, "y1": 32 },
+    { "name": "house_br_lower", "x0": 35, "y0": 29, "x1": 39, "y1": 39 },
+    { "name": "house_bl_small", "x0": 7, "y0": 33, "x1": 12, "y1": 39 }
+  ],
+  "houses": [
+    { "x0": 2, "y0": 31, "x1": 10, "y1": 36 },
+    { "x0": 29, "y0": 31, "x1": 37, "y1": 36 },
+    { "x0": 2, "y0": 3, "x1": 10, "y1": 8 },
+    { "x0": 29, "y0": 3, "x1": 37, "y1": 8 },
+    { "x0": 1, "y0": 14, "x1": 5, "y1": 19 },
+    { "x0": 34, "y0": 14, "x1": 38, "y1": 19 }
+  ],
+  "stalls": [
+    { "x0": 7, "y0": 24, "x1": 10, "y1": 26, "palette": "blue" },
+    { "x0": 29, "y0": 24, "x1": 32, "y1": 26, "palette": "gold" },
+    { "x0": 7, "y0": 12, "x1": 10, "y1": 14, "palette": "orange" },
+    { "x0": 29, "y0": 12, "x1": 32, "y1": 14, "palette": "green" }
+  ],
+  "trees": [
+    { "x0": 1, "y0": 24, "x1": 1, "y1": 26 },
+    { "x0": 1, "y0": 14, "x1": 1, "y1": 16 },
+    { "x0": 38, "y0": 24, "x1": 38, "y1": 26 },
+    { "x0": 38, "y0": 14, "x1": 38, "y1": 16 },
+    { "x0": 14, "y0": 32, "x1": 14, "y1": 34 },
+    { "x0": 25, "y0": 32, "x1": 25, "y1": 34 },
+    { "x0": 14, "y0": 5, "x1": 14, "y1": 7 },
+    { "x0": 25, "y0": 5, "x1": 25, "y1": 7 }
+  ],
+  "walls": [
+    { "x0": 12, "y0": 13, "x1": 16, "y1": 13 },
+    { "x0": 24, "y0": 13, "x1": 28, "y1": 13 },
+    { "x0": 12, "y0": 27, "x1": 16, "y1": 27 },
+    { "x0": 24, "y0": 27, "x1": 28, "y1": 27 }
+  ],
+  "lamps": [
+    { "x": 16, "y": 16 },
+    { "x": 24, "y": 16 },
+    { "x": 16, "y": 24 },
+    { "x": 24, "y": 24 }
+  ]
+}

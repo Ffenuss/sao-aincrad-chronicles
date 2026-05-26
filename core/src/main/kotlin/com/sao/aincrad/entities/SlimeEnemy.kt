@@ -15,7 +15,7 @@ class SlimeEnemy(
         hp = 18
         maxHp = 18
         defense = 1
-        attackDamage = 5
+        attackDamage = 4
     }
 
     override fun update(
@@ -40,8 +40,8 @@ class SlimeEnemy(
         val dx = playerCenterX - enemyCenterX
         val dy = playerCenterY - enemyCenterY
         val distance2 = dx * dx + dy * dy
-        val chaseRange2 = 220f * 220f
-        val attackRange2 = 28f * 28f
+        val chaseRange2 = 170f * 170f
+        val attackRange2 = 24f * 24f
 
         when (state) {
             AIState.IDLE -> {
@@ -121,6 +121,7 @@ class SlimeEnemy(
             }
         }
 
+        updateFacingFromVelocity()
         moveWithCollision(delta, collisionRects, worldBounds)
         syncBounds()
     }

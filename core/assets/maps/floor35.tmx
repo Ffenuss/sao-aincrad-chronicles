@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="78" height="78" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="21">
+  <properties>
+    <property name="floorName" value="Forest of Wandering"/>
+  </properties>
+  <imagelayer id="6" name="visual_backdrop">
+    <image source="floor35_backdrop.png" width="2496" height="2496"/>
+  </imagelayer>
+  <objectgroup id="1" name="collision">
+    <object id="1" x="0" y="0" width="2496" height="32"/>
+    <object id="2" x="0" y="2464" width="2496" height="32"/>
+    <object id="3" x="0" y="0" width="32" height="2496"/>
+    <object id="4" x="2464" y="0" width="32" height="2496"/>
+    <object id="5" x="1056" y="1056" width="384" height="64"/>
+    <object id="6" x="1056" y="1376" width="384" height="64"/>
+    <object id="7" x="1056" y="1056" width="64" height="384"/>
+    <object id="8" x="1376" y="1056" width="64" height="384"/>
+    <object id="9" x="256" y="320" width="256" height="96"/>
+    <object id="10" x="1984" y="576" width="320" height="96"/>
+    <object id="11" x="384" y="2048" width="384" height="96"/>
+  </objectgroup>
+  <objectgroup id="2" name="spawn">
+    <object id="12" x="96" y="96" width="32" height="32"/>
+  </objectgroup>
+  <objectgroup id="3" name="enemy_spawns">
+    <object id="13" name="spawn_35_1" x="320" y="256" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="10"/>
+      </properties>
+    </object>
+    <object id="14" name="spawn_35_2" x="640" y="352" width="28" height="24">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="11"/>
+      </properties>
+    </object>
+    <object id="15" name="spawn_35_3" x="896" y="576" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="12"/>
+      </properties>
+    </object>
+    <object id="16" name="spawn_35_4" x="544" y="864" width="28" height="24">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="13"/>
+      </properties>
+    </object>
+    <object id="17" name="boss_35" x="1440" y="1440" width="48" height="48">
+      <properties>
+        <property name="type" value="floor_boss"/>
+        <property name="respawn" type="float" value="90"/>
+      </properties>
+    </object>
+  </objectgroup>
+  <objectgroup id="4" name="npcs">
+    <object id="18" name="silica_35" x="192" y="192" width="28" height="32">
+      <properties>
+        <property name="name" value="Silica"/>
+        <property name="role" value="ally"/>
+        <property name="dialog" value="The event boss appears near the old cedar shrine at night."/>
+      </properties>
+    </object>
+  </objectgroup>
+  <objectgroup id="5" name="exits">
+    <object id="19" name="to_floor_47" x="2304" y="2304" width="128" height="128">
+      <properties>
+        <property name="toFloor" type="int" value="47"/>
+      </properties>
+    </object>
+  </objectgroup>
+</map>

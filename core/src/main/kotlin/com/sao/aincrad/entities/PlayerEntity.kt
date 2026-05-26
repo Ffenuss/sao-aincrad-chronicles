@@ -2,17 +2,29 @@ package com.sao.aincrad.entities
 
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.sao.aincrad.combat.CombatGeometry
 
 class PlayerEntity(
     startX: Float = 0f,
     startY: Float = 0f,
 ) {
     enum class Facing {
-        UP, DOWN, LEFT, RIGHT
+        UP,
+        UP_RIGHT,
+        RIGHT,
+        DOWN_RIGHT,
+        DOWN,
+        DOWN_LEFT,
+        LEFT,
+        UP_LEFT,
     }
 
     enum class ActionState {
         IDLE, RUNNING, ATTACKING, DODGING, HURT, DEAD
+    }
+
+    enum class AttackStyle {
+        LIGHT, HEAVY, SPIN
     }
 
     data class Stats(
@@ -48,6 +60,8 @@ class PlayerEntity(
     var attackSequenceId = 0
         private set
     var attackMultiplier = 1f
+        private set
+    var attackStyle: AttackStyle = AttackStyle.LIGHT
         private set
 
     var invulnerableTimer = 0f
@@ -104,11 +118,24 @@ class PlayerEntity(
 
     fun canAttack(): Boolean = attackCooldown <= 0f && stats.hp > 0
 
-    fun basicAttack(multiplier: Float = 1f) {
+    fun basicAttack(multiplier: Float = 1f, style: AttackStyle = AttackStyle.LIGHT) {
         if (!canAttack()) return
         actionState = ActionState.ATTACKING
-        attackCooldown = 0.35f
-        attackTimer = 0.18f
+        attackStyle = style
+        when (style) {
+            AttackStyle.LIGHT -> {
+                attackCooldown = 0.34f
+                attackTimer = 0.18f
+            }
+            AttackStyle.HEAVY -> {
+                attackCooldown = 0.52f
+                attackTimer = 0.24f
+            }
+            AttackStyle.SPIN -> {
+                attackCooldown = 0.65f
+                attackTimer = 0.28f
+            }
+        }
         attackMultiplier = multiplier
         attackSequenceId += 1
     }
@@ -123,6 +150,10 @@ class PlayerEntity(
             Facing.DOWN -> dodgeDirection.set(0f, -1f)
             Facing.LEFT -> dodgeDirection.set(-1f, 0f)
             Facing.RIGHT -> dodgeDirection.set(1f, 0f)
+            Facing.UP_RIGHT -> dodgeDirection.set(1f, 1f).nor()
+            Facing.DOWN_RIGHT -> dodgeDirection.set(1f, -1f).nor()
+            Facing.DOWN_LEFT -> dodgeDirection.set(-1f, -1f).nor()
+            Facing.UP_LEFT -> dodgeDirection.set(-1f, 1f).nor()
         }
     }
 
@@ -141,6 +172,20 @@ class PlayerEntity(
 
     fun heal(amount: Int) {
         stats.hp = (stats.hp + amount).coerceAtMost(stats.maxHp)
+    }
+
+    fun reviveAt(x: Float, y: Float) {
+        position.set(x, y)
+        syncBounds()
+        stats.hp = stats.maxHp
+        stats.mp = stats.maxMp
+        invulnerableTimer = 1.2f
+        attackCooldown = 0f
+        attackTimer = 0f
+        dodgeCooldown = 0f
+        dodgeTimer = 0f
+        stopMovement()
+        actionState = ActionState.IDLE
     }
 
     fun gainExp(amount: Int) {
@@ -181,12 +226,31 @@ class PlayerEntity(
     }
 
     fun attackHitbox(): Rectangle {
-        val range = 14f
+        val range = when (attackStyle) {
+            AttackStyle.LIGHT -> 26f
+            AttackStyle.HEAVY -> 34f
+            AttackStyle.SPIN -> 30f
+        }
+        return CombatGeometry.attackHitbox(
+            x = bounds.x,
+            y = bounds.y,
+            width = bounds.width,
+            height = bounds.height,
+            facing = facing.name,
+            range = range,
+        )
+    }
+
+    fun facingAngleDegrees(): Float {
         return when (facing) {
-            Facing.UP -> Rectangle(bounds.x, bounds.y + bounds.height, bounds.width, range)
-            Facing.DOWN -> Rectangle(bounds.x, bounds.y - range, bounds.width, range)
-            Facing.LEFT -> Rectangle(bounds.x - range, bounds.y, range, bounds.height)
-            Facing.RIGHT -> Rectangle(bounds.x + bounds.width, bounds.y, range, bounds.height)
+            Facing.UP -> 90f
+            Facing.UP_RIGHT -> 45f
+            Facing.RIGHT -> 0f
+            Facing.DOWN_RIGHT -> -45f
+            Facing.DOWN -> -90f
+            Facing.DOWN_LEFT -> -135f
+            Facing.LEFT -> 180f
+            Facing.UP_LEFT -> 135f
         }
     }
 
@@ -205,10 +269,17 @@ class PlayerEntity(
     }
 
     private fun updateFacingFromMovement(inputX: Float, inputY: Float) {
-        if (kotlin.math.abs(inputX) > kotlin.math.abs(inputY)) {
-            facing = if (inputX >= 0f) Facing.RIGHT else Facing.LEFT
-        } else if (kotlin.math.abs(inputY) > 0.01f) {
-            facing = if (inputY >= 0f) Facing.UP else Facing.DOWN
+        if (kotlin.math.abs(inputX) < 0.20f && kotlin.math.abs(inputY) < 0.20f) return
+        val angle = kotlin.math.atan2(inputY.toDouble(), inputX.toDouble()) * (180.0 / Math.PI)
+        facing = when {
+            angle >= 157.5 || angle < -157.5 -> Facing.LEFT
+            angle >= 112.5 -> Facing.UP_LEFT
+            angle >= 67.5 -> Facing.UP
+            angle >= 22.5 -> Facing.UP_RIGHT
+            angle >= -22.5 -> Facing.RIGHT
+            angle >= -67.5 -> Facing.DOWN_RIGHT
+            angle >= -112.5 -> Facing.DOWN
+            else -> Facing.DOWN_LEFT
         }
     }
 

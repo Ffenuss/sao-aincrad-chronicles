@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="21">
+  <properties>
+    <property name="floorName" value="Forest of Reflection"/>
+  </properties>
+  <imagelayer id="6" name="visual_backdrop">
+    <image source="floor10_backdrop.png" width="2048" height="2048"/>
+  </imagelayer>
+  <objectgroup id="1" name="collision">
+    <object id="1" x="0" y="0" width="2048" height="32"/>
+    <object id="2" x="0" y="2016" width="2048" height="32"/>
+    <object id="3" x="0" y="0" width="32" height="2048"/>
+    <object id="4" x="2016" y="0" width="32" height="2048"/>
+    <object id="5" x="832" y="832" width="384" height="64"/>
+    <object id="6" x="832" y="1152" width="384" height="64"/>
+    <object id="7" x="832" y="832" width="64" height="384"/>
+    <object id="8" x="1152" y="832" width="64" height="384"/>
+    <object id="9" x="256" y="320" width="256" height="96"/>
+    <object id="10" x="1536" y="576" width="320" height="96"/>
+    <object id="11" x="384" y="1600" width="384" height="96"/>
+  </objectgroup>
+  <objectgroup id="2" name="spawn">
+    <object id="12" x="96" y="96" width="32" height="32"/>
+  </objectgroup>
+  <objectgroup id="3" name="enemy_spawns">
+    <object id="13" name="spawn_10_1" x="320" y="256" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="10"/>
+      </properties>
+    </object>
+    <object id="14" name="spawn_10_2" x="640" y="352" width="28" height="24">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="11"/>
+      </properties>
+    </object>
+    <object id="15" name="spawn_10_3" x="896" y="576" width="28" height="24">
+      <properties>
+        <property name="type" value="slime"/>
+        <property name="respawn" type="float" value="12"/>
+      </properties>
+    </object>
+    <object id="16" name="spawn_10_4" x="544" y="864" width="28" height="24">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="13"/>
+      </properties>
+    </object>
+    <object id="17" name="boss_10" x="1216" y="1216" width="48" height="48">
+      <properties>
+        <property name="type" value="dark_elf"/>
+        <property name="respawn" type="float" value="90"/>
+      </properties>
+    </object>
+  </objectgroup>
+  <objectgroup id="4" name="npcs">
+    <object id="18" name="argo_info" x="192" y="192" width="28" height="32">
+      <properties>
+        <property name="name" value="Argo"/>
+        <property name="role" value="story"/>
+        <property name="dialog" value="Information first, sword second. The elf route starts from floor 22."/>
+      </properties>
+    </object>
+  </objectgroup>
+  <objectgroup id="5" name="exits">
+    <object id="19" name="to_floor_22" x="1856" y="1856" width="128" height="128">
+      <properties>
+        <property name="toFloor" type="int" value="22"/>
+      </properties>
+    </object>
+  </objectgroup>
+</map>
